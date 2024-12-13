@@ -259,3 +259,8 @@ provisioner "remote-exec" {
     ignore_changes = [security_groups]
   }
 }
+
+output "web_server_url" {
+  value = "http://${aws_instance.ubuntu_server.public_ip}"
+  description = "The URL to access the web server"
+}
