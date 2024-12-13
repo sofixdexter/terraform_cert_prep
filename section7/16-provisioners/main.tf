@@ -163,7 +163,17 @@ resource "aws_instance" "ubuntu_server" {
     private_key = tls_private_key.generated.private_key_pem
     host        = self.public_ip
   }
-
+# Leave the first part of the block unchanged and create our `local-exec` provisioner
+  provisioner "local-exec" {
+    command = "chmod 600 ${local_file.private_key_pem.filename}"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo rm -rf /tmp",
+      "sudo git clone https://github.com/hashicorp/demo-terraform-101 /tmp",
+      "sudo sh /tmp/assets/setup-web.sh",
+    ]
+  }  
   tags = {
     Name = "Ubuntu EC2 Server"
   }
