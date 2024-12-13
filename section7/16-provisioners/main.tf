@@ -151,3 +151,4 @@ resource "aws_security_group" "vpc-ping" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
