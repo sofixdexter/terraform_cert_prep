@@ -155,25 +155,31 @@ resource "aws_instance" "ubuntu_server" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.public_subnets["public_subnet_1"].id
-  security_groups             = [aws_security_group.vpc-ping.id, aws_security_group.ingress-ssh.id, aws_security_group.vpc-web.id] 
+  security_groups             = [aws_security_group.vpc-ping.id, aws_security_group.ingress-ssh.id, aws_security_group.vpc-web.id]
   associate_public_ip_address = true
   key_name                    = aws_key_pair.generated.key_name
+
+  depends_on = [aws_security_group.ingress-ssh] # Ensure security groups are ready
+
   connection {
     user        = "ubuntu"
     private_key = tls_private_key.generated.private_key_pem
     host        = self.public_ip
+    timeout     = "5m" # Longer timeout
   }
-# Leave the first part of the block unchanged and create our `local-exec` provisioner
+
   provisioner "local-exec" {
     command = "chmod 600 ${local_file.private_key_pem.filename}"
   }
+
   provisioner "remote-exec" {
     inline = [
-      "sudo rm -rf /tmp",
+      "sudo apt update -y && sudo apt install git -y",
       "sudo git clone https://github.com/hashicorp/demo-terraform-101 /tmp",
       "sudo sh /tmp/assets/setup-web.sh",
     ]
-  }  
+  }
+
   tags = {
     Name = "Ubuntu EC2 Server"
   }
@@ -181,5 +187,4 @@ resource "aws_instance" "ubuntu_server" {
   lifecycle {
     ignore_changes = [security_groups]
   }
-
 }
