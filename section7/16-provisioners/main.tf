@@ -243,13 +243,13 @@ resource "aws_instance" "ubuntu_server" {
     command = "chmod 600 ${local_file.private_key_pem.filename}"
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt update -y && sudo apt install git -y",
-      "sudo git clone https://github.com/hashicorp/demo-terraform-101 /tmp",
-      "sudo sh /tmp/assets/setup-web.sh",
-    ]
-  }
+provisioner "remote-exec" {
+  inline = [
+    "sudo apt update -y && sudo apt install git -y",
+    "sudo git clone https://github.com/hashicorp/demo-terraform-101 /tmp/terraform-repo",
+    "sudo sh /tmp/terraform-repo/assets/setup-web.sh"
+  ]
+}
 
   tags = {
     Name = "Ubuntu EC2 Server"
