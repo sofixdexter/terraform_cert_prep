@@ -264,3 +264,8 @@ output "web_server_url" {
   value = "http://${aws_instance.ubuntu_server.public_ip}"
   description = "The URL to access the web server"
 }
+
+output "hello mehdi" {
+  value = "fin a sat ha page lanciha"
+  description = "The URL to access the web server"
+}
