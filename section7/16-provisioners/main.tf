@@ -265,7 +265,7 @@ output "web_server_url" {
   description = "The URL to access the web server"
 }
 
-output "hello mehdi" {
+output "hello_mehdi" {
   value = "fin a sat ha page lanciha"
   description = "The URL to access the web server"
 }
