@@ -308,3 +308,8 @@ resource "aws_instance" "web_server" {
   }
 
 }
+
+import {
+  to = aws_instance.imported
+  id = "i-026996b5007be2313"
+}
