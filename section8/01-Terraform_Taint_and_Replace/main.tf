@@ -311,8 +311,8 @@ resource "aws_instance" "web_server" {
 
 resource "aws_instance" "imported" {
   instance_type               = "t2.micro"
-  ami = ami-0e2c8caa4b6378d8c
-  
+  ami = "ami-0e2c8caa4b6378d8c"
+
 }
 import {
   to = aws_instance.imported
