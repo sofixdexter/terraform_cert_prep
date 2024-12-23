@@ -1,9 +1,10 @@
 # Configure the AWS Provider
 provider "aws" {
   region = "us-west-2"
-  Terraform   = "true"
-  workspace = terraform.workspace
-
+  tags = {
+    Terraform   = "true"
+    workspace = terraform.workspace
+  }
 }
 
 #Retrieve the list of AZs in the current AWS region
