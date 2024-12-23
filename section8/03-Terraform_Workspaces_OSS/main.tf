@@ -1,9 +1,11 @@
 # Configure the AWS Provider
 provider "aws" {
   region = "us-west-2"
-  tags = {
-    Terraform   = "true"
-    workspace = terraform.workspace
+  default_tags {
+    tags = {
+      Terraform   = "true"
+      workspace = terraform.workspace
+    }
   }
 }
 
