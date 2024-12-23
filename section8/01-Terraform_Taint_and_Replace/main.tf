@@ -246,7 +246,7 @@ resource "aws_instance" "ubuntu_server" {
 provisioner "remote-exec" {
   inline = [
     "sudo rm -rf /tmp/",  # Clean up /tmp directory
-    "sudo apt update -y && sudo apt install git -y",
+    "sudo apt updatee -y && sudo apt install git -y",
     "sudo git clone https://github.com/hashicorp/demo-terraform-101 /tmp",
     "sudo sh /tmp/assets/setup-web.sh",
   ]
@@ -273,7 +273,7 @@ output "hello_mehdi" {
 # Terraform Resource Block - To Build Web Server in Public Subnet
 resource "aws_instance" "web_server" {
   ami                         = data.aws_ami.ubuntu.id
-  instance_type               = "t3.micro"
+  instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.public_subnets["public_subnet_1"].id
   security_groups             = [aws_security_group.vpc-ping.id, 
      aws_security_group.ingress-ssh.id, aws_security_group.vpc-web.id]
