@@ -245,7 +245,6 @@ resource "aws_instance" "ubuntu_server" {
 
 provisioner "remote-exec" {
   inline = [
-    "exit 2",
     "sudo rm -rf /tmp/",  # Clean up /tmp directory
     "sudo apt update -y && sudo apt install git -y",
     "sudo git clone https://github.com/hashicorp/demo-terraform-101 /tmp",
