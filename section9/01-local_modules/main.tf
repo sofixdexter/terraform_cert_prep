@@ -269,8 +269,8 @@ output "server_url" {
   value = "http://${aws_instance.ubuntu_server.public_ip}"
   description = "The URL to access the web server"
 }
-
-module "server" {
+# build server 1
+module "server1" {
   source          = "./server"
   ami             = data.aws_ami.ubuntu.id
   subnet_id       = aws_subnet.public_subnets["public_subnet_3"].id
@@ -287,4 +287,24 @@ output "public_ip" {
 
 output "public_dns" {
   value = module.server.public_dns
+}
+
+# build server 2
+module "server2" {
+  source          = "./server"
+  ami             = data.aws_ami.ubuntu.id
+  subnet_id       = aws_subnet.public_subnets["public_subnet_1"].id
+  security_groups = [
+    aws_security_group.vpc-ping.id,
+    aws_security_group.ingress-ssh.id,
+    aws_security_group.vpc-web.id
+  ]
+}
+
+output "public_ip" {
+  value = module.server2.public_ip
+}
+
+output "public_dns" {
+  value = module.server2.public_dns
 }
