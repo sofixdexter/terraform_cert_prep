@@ -288,3 +288,7 @@ output "public_ip_srv1" {
 output "public_dns_srv1" {
   value = module.server1.public_dns
 }
+
+output "size" {
+  value = module.server1.size
+}
