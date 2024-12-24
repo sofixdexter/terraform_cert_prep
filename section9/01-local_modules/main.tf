@@ -282,11 +282,11 @@ module "server1" {
 }
 
 output "public_ip_srv1" {
-  value = module.server.public_ip
+  value = module.server1.public_ip
 }
 
 output "public_dns_srv1" {
-  value = module.server.public_dns
+  value = module.server1.public_dns
 }
 
 # build server 2
