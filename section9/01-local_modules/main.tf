@@ -271,7 +271,7 @@ output "server_url" {
 }
 # build server 1
 module "server1" {
-  source          = "./server"
+  source          = "./modules/server"
   ami             = data.aws_ami.ubuntu.id
   subnet_id       = aws_subnet.public_subnets["public_subnet_3"].id
   security_groups = [
@@ -291,7 +291,7 @@ output "public_dns_srv1" {
 
 # build server 2
 module "server2" {
-  source          = "./server"
+  source          = "./modules/web_server"
   ami             = data.aws_ami.ubuntu.id
   subnet_id       = aws_subnet.public_subnets["public_subnet_1"].id
   security_groups = [
