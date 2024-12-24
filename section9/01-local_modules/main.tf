@@ -323,7 +323,7 @@ module "autoscaling" {
 
 # Launch template
   create_launch_template = true
-
+  iam_instance_profile = "ecsInstanceRole"
   image_id      = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
 
