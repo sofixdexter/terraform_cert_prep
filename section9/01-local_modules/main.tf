@@ -281,11 +281,11 @@ module "server1" {
   ]
 }
 
-output "public_ip" {
+output "public_ip_srv1" {
   value = module.server.public_ip
 }
 
-output "public_dns" {
+output "public_dns_srv1" {
   value = module.server.public_dns
 }
 
@@ -301,10 +301,10 @@ module "server2" {
   ]
 }
 
-output "public_ip" {
+output "public_ip_srv2" {
   value = module.server2.public_ip
 }
 
-output "public_dns" {
+output "public_dns_srv2" {
   value = module.server2.public_dns
 }
