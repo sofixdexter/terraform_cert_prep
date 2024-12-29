@@ -272,7 +272,7 @@ output "server_url" {
 
 module "autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
-  version = "4.9.0"
+  version = "8.0.1"
 
   # Autoscaling group
   name = "myasg"
@@ -289,8 +289,7 @@ module "autoscaling" {
   image_id      = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
 
-  tags_as_map = {
+  tags = {
     Name = "Web EC2 Server 2"
   }
-
 }
