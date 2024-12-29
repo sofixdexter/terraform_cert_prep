@@ -292,3 +292,8 @@ module "autoscaling" {
     Name = "Web EC2 Server 2"
   }
 }
+
+output "azs" {
+  value = module.autoscaling.autoscaling_group_availability_zones
+  description = "The availability_zones"
+}
