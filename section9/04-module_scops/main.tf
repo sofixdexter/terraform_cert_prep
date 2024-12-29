@@ -297,3 +297,7 @@ output "azs" {
   value = module.autoscaling.autoscaling_group_availability_zones
   description = "The availability_zones"
 }
+
+output "asg_group_size" {
+  value = module.autoscaling.autoscaling_group_max_size
+}
